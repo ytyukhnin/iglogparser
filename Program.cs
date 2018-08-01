@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -27,10 +28,11 @@ namespace IGLogParser
                 return;
             }
 
+            Stopwatch sw = Stopwatch.StartNew();
             var actions = new Dictionary<string, ISet<string>>();
             var logs = File.ReadAllLines(args[0]);
             
-            for (int i = 0; i <= logs.GetUpperBound(0); i++)
+            for (int i = 0; i < logs.Length; i++)
             {
                 if(i == 0) continue; // header
                 var line = logs[i].Split('\t');
@@ -72,6 +74,8 @@ namespace IGLogParser
                     break;
                 case "upv":
                     a = actions["hacked friendly portal"];
+                    a.UnionWith(actions["created link"]);
+                    a.UnionWith(actions["captured portal"]);
                     a.UnionWith(actions["resonator deployed"]);
                     a.UnionWith(actions["resonator upgraded"]);
                     a.UnionWith(actions["hacked enemy portal"]);
@@ -101,7 +105,7 @@ namespace IGLogParser
 
             File.WriteAllText(output, sb.ToString());
 
-            Console.WriteLine($"File '{output}' has been generated with success.");
+            Console.WriteLine($"File '{output}' has been generated with success in {sw.ElapsedMilliseconds.ToString()} ms.");
         }
     }
 }
