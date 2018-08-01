@@ -32,9 +32,8 @@ namespace IGLogParser
             var actions = new Dictionary<string, ISet<string>>();
             var logs = File.ReadAllLines(args[0]);
             
-            for (int i = 0; i < logs.Length; i++)
+            for (int i = 1; i < logs.Length; i++) // skipping header starting at 1
             {
-                if(i == 0) continue; // header
                 var line = logs[i].Split('\t');
                 if (line.Length > 0)
                 {
