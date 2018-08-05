@@ -5,6 +5,6 @@ game_log.tsv file parser for GDPR request personal data analysis. Generates outp
 
 For personal use only.
 
-`IGLogParser.exe <game_log_file> <output_file> <upc|upv>`
+`dotnet run <game_log_file> <output_file> <upc|upv>`
 
-Requires [.NET Framework 4.5+](https://www.microsoft.com/net/download)
+Requires [.NET Core 2.1](https://www.microsoft.com/net/download)
