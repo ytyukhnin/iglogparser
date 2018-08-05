@@ -10,7 +10,7 @@ namespace IGLogParser
 {
     class Program
     {
-        private const string UsageMessage = "Usage: IGLogParser.exe<game_log_file> <output_file> <upc|upv>";
+        private const string UsageMessage = "Usage: IGLogParser.exe <game_log_file> <output_file> <upc|upv>";
 
         static void Main(string[] args)
         {
